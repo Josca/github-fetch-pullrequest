@@ -2,9 +2,9 @@
 Script to pull request from GitHub and prepare them for rebase process.
 
 ## Install
-~~~
-pip install . # from sources
+~~~bash
 pip install github-fetch-pullrequest # from PyPI
+pip install .                        # from sources
 ~~~
 
 ## Usage
