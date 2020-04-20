@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='github-fetch-pullrequest',
-    version='0.0.1',
+    version='0.0.2',
     author='Josef Hák',
     author_email='jhak@redhat.com',
     description='Script to pull request from GitHub.',
