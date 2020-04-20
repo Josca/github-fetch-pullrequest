@@ -5,7 +5,7 @@ import os
 import re
 import sys
 import argparse
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 import simplejson
 import git
@@ -33,20 +33,20 @@ def setup_token(oauth_file):
 
 def list_requests(user, repo, oauth):
     """Prints open pull requests with some additional info"""
-    url = "https://api.github.com/repos/%s/%s/pulls" % (user, repo)
+    req = Request("https://api.github.com/repos/%s/%s/pulls" % (user, repo))
     if oauth:
-        url += "?access_token=%s" % oauth
-    pull_requests = simplejson.load(urlopen(url))
+        req.add_header("Authorization", "token %s" % oauth)
+    pull_requests = simplejson.load(urlopen(req))
     for request in pull_requests:
         print ('{0:4} ({1:>12}) {2}'.format(request.get('number'), request.get('assignee').get('login') if request.get('assignee') else '', request.get('title')))
 
 
 def get_pull_request(req_num, user, repo, oauth):
     """Get data about one request"""
-    url = "https://api.github.com/repos/%s/%s/pulls/%d" % (user, repo, req_num)
+    req = Request("https://api.github.com/repos/%s/%s/pulls/%d" % (user, repo, req_num))
     if oauth:
-        url += "?access_token=%s" % oauth
-    result = simplejson.load(urlopen(url))
+        req.add_header("Authorization", "token %s" % oauth)
+    result = simplejson.load(urlopen(req))
     return result
 
 
