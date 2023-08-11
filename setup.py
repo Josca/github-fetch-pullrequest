@@ -18,7 +18,7 @@ setup(
     ],
     install_requires=[
         'simplejson==3.16.0',
-        'gitpython==2.1.11'
+        'gitpython==3.1.32'
     ],
     entry_points='''
         [console_scripts]
